@@ -23,6 +23,12 @@ export default function MenuTop() {
         <Menu.Item key="2">
           <Link to="/new-movies">Ultimos Lanzamientos</Link>
         </Menu.Item>
+        <Menu.Item key="3">
+          <Link to="/popular">Popular</Link>
+        </Menu.Item>
+        <Menu.Item key="4">
+          <Link to="/search">Buscador</Link>
+        </Menu.Item>
       </Menu>
     </div>
   );
