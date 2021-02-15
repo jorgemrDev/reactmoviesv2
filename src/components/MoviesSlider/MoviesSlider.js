@@ -3,12 +3,13 @@ import "./MoviesSlider.scss";
 import { Carousel, Button } from "antd";
 import { Link } from "react-router-dom";
 import { IMAGE_BASE_URL } from "../../utils/constants";
+import Loading from "../Loading";
 
 export default function MoviesSlider(props) {
   const { movies } = props;
 
   if (movies.loading || !movies.result) {
-    return "Loading...";
+    return <Loading></Loading>;
   }
 
   const { results } = movies.result;
