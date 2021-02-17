@@ -1,5 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Row, Col } from "antd";
+import { API_KEY, API_URL, IMAGE_BASE_URL } from "../utils/constants";
+import Footer from "../components/Footer";
+import Loading from "../components/Loading";
+import MoviesCatalog from "../components/MoviesCatalog";
 
 export default function NewMovies() {
-  return <p>new movies</p>;
+  const [moviesList, setMoviesList] = useState([]);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        `${API_URL}movie/now_playing?api_key=${API_KEY}&language=es-Es&page=${page}`
+      );
+      const movies = await response.json();
+      setMoviesList(movies);
+    })();
+  }, [page]);
+
+  return (
+    <Row>
+      <Col span={24} style={{ textAlign: "center", marginTop: 25 }}>
+        <h1 style={{ fontSize: 35, fontWeight: "bold" }}>
+          Ultimos Lanzamientos
+        </h1>
+      </Col>
+      {moviesList.results ? (
+        <Row span="24">
+          <MoviesCatalog movies={moviesList} />
+        </Row>
+      ) : (
+        <Col span={24}>
+          <Loading></Loading>
+        </Col>
+      )}
+
+      <Col span={24}>
+        <Footer></Footer>
+      </Col>
+    </Row>
+  );
 }
