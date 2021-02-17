@@ -16,12 +16,14 @@ function Search(props) {
     (async () => {
       const searchValue = queryString.parseUrl(location.search);
       const { s } = searchValue.query;
-      const response = await fetch(
-        `${API_URL}search/movie?api_key=${API_KEY}&language=es-ES&query=${s}&page=1`
-      );
-      const movies = await response.json();
-      setMoviesList(movies);
-      setSearchValue(s);
+      if (s) {
+        const response = await fetch(
+          `${API_URL}search/movie?api_key=${API_KEY}&language=es-ES&query=${s}&page=1`
+        );
+        const movies = await response.json();
+        setMoviesList(movies);
+        setSearchValue(s);
+      }
     })();
   }, [location.search]);
 
