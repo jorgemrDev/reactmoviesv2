@@ -32,7 +32,7 @@ export default function NewMovies() {
         </h1>
       </Col>
       {moviesList.results ? (
-        <>
+        <Col span={24}>
           <Row span="24">
             <MoviesCatalog movies={moviesList} />
           </Row>
@@ -43,7 +43,7 @@ export default function NewMovies() {
               onChangePage={onChangePage}
             />
           </Row>
-        </>
+        </Col>
       ) : (
         <Col span={24}>
           <Loading></Loading>
